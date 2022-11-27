@@ -1,0 +1,7 @@
+/REPORTS/
+/.idea/
+/target/
+/test-output/
+/allure-results
+*.bat
+.gitignore
