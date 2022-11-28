@@ -192,6 +192,7 @@
                     </properties>
                     <includes>
                         <include>com.spring.springselenium.Runner.TuroutTestNgRunner</include>
+                        <include>com.spring.springselenium.Runner.CommsTestNgRunner</include>
                     </includes>
                 </configuration>
             </plugin>

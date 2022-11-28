@@ -2,7 +2,7 @@ package com.spring.springselenium.PageClass.Google;
 
 import com.spring.springselenium.Configuraion.annotation.Page;
 import com.spring.springselenium.PageClass.Base;
-import com.spring.springselenium.Utilities.XLUtility_xlsx;
+import com.spring.springselenium.XLUtility.XLUtility_xlsx;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
