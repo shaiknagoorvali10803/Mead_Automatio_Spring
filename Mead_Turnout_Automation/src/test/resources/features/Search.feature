@@ -15,5 +15,5 @@ Feature: Google search
     Examples:
       | keyword  | count |
       | selenium | 10    |
-#      | java     | 8     |
-#      | spring   | 1     |
+      | java     | 8     |
+      | spring   | 1     |

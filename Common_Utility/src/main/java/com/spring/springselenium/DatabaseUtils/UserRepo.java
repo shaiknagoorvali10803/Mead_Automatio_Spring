@@ -1,4 +1,4 @@
-package com.spring.springselenium.StepDefinitions;
+package com.spring.springselenium.DatabaseUtils;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
