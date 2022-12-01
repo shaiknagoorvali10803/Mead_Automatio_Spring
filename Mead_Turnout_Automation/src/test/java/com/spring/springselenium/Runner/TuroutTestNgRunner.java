@@ -7,7 +7,7 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = "classpath:features",
         glue = "com.spring.springselenium.StepDefinitions",
-        //tags =  "@google",
+        tags =  "@google",
         plugin = {
                 "pretty",
                 "json:target/cucumber-reports/CucumberTestReport.json",
@@ -18,7 +18,7 @@ import org.testng.annotations.DataProvider;
 )
 public class TuroutTestNgRunner extends AbstractTestNGCucumberTests {
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
