@@ -3,7 +3,7 @@ package com.spring.springselenium.PageClass.Visa;
 import com.spring.springselenium.PageClass.Base;
 import com.spring.springselenium.Configuraion.annotation.LazyAutowired;
 import com.spring.springselenium.Configuraion.annotation.Page;
-import com.spring.springselenium.Utilities.SeleniumUtils;
+import com.spring.springselenium.SeleniumUtils.SeleniumUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;

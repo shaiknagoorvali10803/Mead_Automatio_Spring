@@ -1,4 +1,4 @@
-package com.spring.springselenium.Utilities;
+package com.spring.springselenium.Constants;
 
 
 public class CommonConstants {

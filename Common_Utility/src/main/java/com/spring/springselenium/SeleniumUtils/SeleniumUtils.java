@@ -1,6 +1,7 @@
-package com.spring.springselenium.Utilities;
+package com.spring.springselenium.SeleniumUtils;
 
 import com.spring.springselenium.Configuraion.annotation.Page;
+import com.spring.springselenium.Constants.CommonConstants;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.Days;
 import org.openqa.selenium.*;
@@ -32,8 +33,8 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import static com.spring.springselenium.Utilities.CommonConstants.BEFORE_WAIT_FOR_ELEMENT_IN_BUTTON_CLICK;
-import static com.spring.springselenium.Utilities.CommonConstants.MM_DD_YYYY_WITH_SLASH;
+import static com.spring.springselenium.Constants.CommonConstants.BEFORE_WAIT_FOR_ELEMENT_IN_BUTTON_CLICK;
+import static com.spring.springselenium.Constants.CommonConstants.MM_DD_YYYY_WITH_SLASH;
 
 @Page
 public class SeleniumUtils {
