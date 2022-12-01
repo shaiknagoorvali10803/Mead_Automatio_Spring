@@ -1,4 +1,4 @@
-package com.spring.springselenium.Entity;
+package com.spring.springselenium.DatabaseUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

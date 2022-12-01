@@ -2,6 +2,7 @@ package com.spring.springselenium.StepDefinitions;
 
 import com.spring.springselenium.Configuraion.annotation.LazyAutowired;
 import com.spring.springselenium.Configuraion.service.ScreenshotService;
+import com.spring.springselenium.DatabaseUtils.UserRepo;
 import com.spring.springselenium.PageClass.Google.GooglePage;
 import com.spring.springselenium.SeleniumUtils.SeleniumUtils;
 import io.cucumber.java.en.Given;
@@ -14,14 +15,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.testng.Assert;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GoogleSteps {
@@ -46,9 +44,6 @@ public class GoogleSteps {
         this.testUserDetails=testUserDetails;
     }
 
-    @Autowired
-    private UserRepo repo;
-
     @PostConstruct
     private void init(){
         PageFactory.initElements(this.driver, this);
@@ -57,8 +52,6 @@ public class GoogleSteps {
 
    @Given("I am on the google site")
     public void launchSite() {
-        String sql ="select * from student";
-        repo.save(new Student(13,"rayan","pallamalli"));
         this.googlePage.goTo();
         //scenarioContext.getScenario().attach(this.screenshotService.getScreenshot(), "image/png", scenarioContext.getScenario().getName());
         testUserDetails.setUserDetails(new UserDetails("Shaik.Nagoorvali","password"));

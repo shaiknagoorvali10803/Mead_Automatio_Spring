@@ -1,6 +1,5 @@
-package com.spring.springselenium.Repository;
+package com.spring.springselenium.DatabaseUtils;
 
-import com.spring.springselenium.Entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

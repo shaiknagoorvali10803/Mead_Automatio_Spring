@@ -1,10 +1,9 @@
-package com.spring.springselenium.StepDefinitions;
-
-import org.springframework.stereotype.Component;
+package com.spring.springselenium.DatabaseUtils;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="Student")
