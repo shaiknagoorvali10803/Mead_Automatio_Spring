@@ -1,5 +1,6 @@
 package com.spring.springselenium.StepDefinitions;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import com.spring.springselenium.Configuraion.annotation.LazyAutowired;
 import com.spring.springselenium.Configuraion.service.ScreenshotService;
 import com.spring.springselenium.DatabaseUtils.UserRepo;
@@ -19,6 +20,7 @@ import org.testng.Assert;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +66,7 @@ public class GoogleSteps {
 
     @Then("I should see search results page")
     public void clickSearch() throws IOException {
+        Uninterruptibles.sleepUninterruptibly(Duration.ofSeconds(4));
         Assert.assertTrue(this.googlePage.isAt());
         System.out.println("hashcode scenario Context "+scenarioContext.getScenario().hashCode());
         System.out.println("hashcode driver "+driver.hashCode());

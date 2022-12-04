@@ -174,7 +174,6 @@
             <artifactId>fluent-selenium</artifactId>
             <version>1.23</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
         <dependency>
             <groupId>joda-time</groupId>
@@ -186,7 +185,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        </dependencies>
     <build>
         <plugins>
             <plugin>
