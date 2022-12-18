@@ -74,7 +74,7 @@ public class GoogleSteps {
         System.out.println("The Username from GoogleTest Class is:" + testUserDetails.getUserDetails().getUsername());
         System.out.println("The Username from GoogleTest Class is:" + testUserDetails.getUserDetails().getPassword());
         Assert.assertTrue(this.googlePage.getCount() >= count);
-        utils.clickWithWait(By.xpath("//a[normalize-space()='Images']"));
+        utils.clickWithWait(driver,By.xpath("//a[normalize-space()='Images']"));
         Thread.sleep(3000);
         driver.findElement(By.xpath("//a[normalize-space()='Videos']")).click();
     }

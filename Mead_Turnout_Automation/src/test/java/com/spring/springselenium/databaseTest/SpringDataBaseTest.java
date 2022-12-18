@@ -1,4 +1,4 @@
-package com.spring.springselenium;
+package com.spring.springselenium.databaseTest;
 
 import com.spring.springselenium.DatabaseUtils.DataBaseUtils;
 import com.spring.springselenium.DatabaseUtils.Student;

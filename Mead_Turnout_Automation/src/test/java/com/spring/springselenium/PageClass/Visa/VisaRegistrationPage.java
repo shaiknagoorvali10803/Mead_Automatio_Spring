@@ -72,7 +72,6 @@ public class VisaRegistrationPage extends Base {
         new Select(this.day).selectByVisibleText(String.valueOf(localDate.getDayOfMonth()));
         new Select(this.month).selectByValue(localDate.getMonth().toString());
     }
-
     public void setContactDetails(String email, String phone){
         this.email.sendKeys(email);
         this.phone.sendKeys(phone);
@@ -83,7 +82,7 @@ public class VisaRegistrationPage extends Base {
     }
 
     public void submit(){
-        utils.clickElementWithWait(submit,30);
+        utils.clickUsingJavaScript(driver,submit);
     }
 
     public String getConfirmationNumber(){

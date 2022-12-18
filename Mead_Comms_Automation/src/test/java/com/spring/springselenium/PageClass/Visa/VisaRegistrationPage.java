@@ -83,7 +83,7 @@ public class VisaRegistrationPage extends Base {
     }
 
     public void submit(){
-        utils.clickElementWithWait(submit,30);
+        utils.clickElementWithWait(driver,submit,30);
     }
 
     public String getConfirmationNumber(){
