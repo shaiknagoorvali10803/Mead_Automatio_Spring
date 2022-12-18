@@ -39,8 +39,6 @@ import static org.testng.Assert.fail;
 @Page
 public class SeleniumUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(SeleniumUtils.class);
-    @Autowired
-    private WebDriverWait wait;
     private int defaultMaxTime = 60;
     private int maxSyncTime = defaultMaxTime;
     private boolean isCustomWait = false;
@@ -1293,13 +1291,15 @@ public class SeleniumUtils {
 
 
     public void clickElementWithWait(WebDriver driver,String locator, int time){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         WebElement element=driver.findElement(By.xpath(locator));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
 
     }
-    public void clickElementWithWait(WebElement element, int time){
+    public void clickElementWithWait(WebDriver driver,WebElement element, int time){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
