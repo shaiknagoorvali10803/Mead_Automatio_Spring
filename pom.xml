@@ -25,8 +25,8 @@
         <webdrivermanager.version>5.2.0</webdrivermanager.version>
         <testng.version>7.3.0</testng.version>
         <cucumber.version>7.9.0</cucumber.version>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>

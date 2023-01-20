@@ -9,8 +9,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,6 +43,9 @@ public class VisaSteps {
     @LazyAutowired
     private GooglePage googlePage;
 
+    @LazyAutowired
+    private VisaRegistrationPage visaRegistrationPage;
+
     @Autowired
     ScenarioContext scenarioContext;
 
@@ -65,7 +66,8 @@ public class VisaSteps {
     @Given("I am on VISA registration form")
     public void launchSite() {
         this.driver.navigate().to("https://vins-udemy.s3.amazonaws.com/sb/visa/udemy-visa.html");
-        contextMap.get(driver.hashCode()).scenario.attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "screenshot");
+        System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
+        visaRegistrationPage.addScreenShot();
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
          }
 
@@ -96,7 +98,7 @@ public class VisaSteps {
 
     @And("I submit the form")
     public void submit() {
-        contextMap.get(driver.hashCode()).scenario.attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "screenshot");
+        visaRegistrationPage.addScreenShot();
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         this.registrationPage.submit();
         System.out.println("hashcode scenario Context "+scenarioContext.getScenario().hashCode());
@@ -106,6 +108,7 @@ public class VisaSteps {
     @Then("I should see get the confirmation number")
     public void verifyConfirmationNumber() throws InterruptedException {
         boolean isEmpty = StringUtils.isEmpty(this.registrationPage.getConfirmationNumber().trim());
+        System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
         Assert.assertFalse(isEmpty);
         Thread.sleep(2000);
     }

@@ -24,7 +24,7 @@ public class CucumberHooks {
     public static void before_or_after_all() throws IOException {
         AllureResultCleaner.cleanUpAllureResultDirectory();
     }
-    @AfterStep
+    @Before
     public void settingScenario(Scenario scenario) {
         scenarioContext.setScenario(scenario);
     }

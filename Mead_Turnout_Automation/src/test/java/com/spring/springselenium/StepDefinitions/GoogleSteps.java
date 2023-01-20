@@ -3,15 +3,13 @@ package com.spring.springselenium.StepDefinitions;
 import com.google.common.util.concurrent.Uninterruptibles;
 import com.spring.springselenium.Configuraion.annotation.LazyAutowired;
 import com.spring.springselenium.Configuraion.service.ScreenshotService;
-import com.spring.springselenium.DatabaseUtils.UserRepo;
 import com.spring.springselenium.PageClass.Google.GooglePage;
 import com.spring.springselenium.SeleniumUtils.SeleniumUtils;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -26,6 +24,7 @@ import java.util.Map;
 
 public class GoogleSteps {
     private static Map<Integer,ScenarioContext> contextMap = new HashMap<>();
+    private static Map<Integer, Scenario> scenarioMap = new HashMap<>();
     @Autowired
     protected WebDriver driver;
     @Autowired
@@ -40,28 +39,30 @@ public class GoogleSteps {
     private SeleniumUtils utils;
     @LazyAutowired
     private GooglePage googlePage;
-     @Autowired
+    @Autowired
     public GoogleSteps (TestUserDetails testUserDetails)
     {
         this.testUserDetails=testUserDetails;
-    }
+        }
 
     @PostConstruct
     private void init(){
         PageFactory.initElements(this.driver, this);
         contextMap.put(driver.hashCode(),scenarioContext);
-    }
+       }
 
    @Given("I am on the google site")
     public void launchSite() {
         this.googlePage.goTo();
+       googlePage.addScreenShot();
         //scenarioContext.getScenario().attach(this.screenshotService.getScreenshot(), "image/png", scenarioContext.getScenario().getName());
         testUserDetails.setUserDetails(new UserDetails("Shaik.Nagoorvali","password"));
+       System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
         }
     @When("I enter {string} as a keyword")
     public void enterKeyword(String keyword) {
         this.googlePage.search(keyword);
-        contextMap.get(driver.hashCode()).scenario.attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "screenShot");
+        googlePage.addScreenShot();
         }
 
     @Then("I should see search results page")
@@ -70,7 +71,7 @@ public class GoogleSteps {
         Assert.assertTrue(this.googlePage.isAt());
         System.out.println("hashcode scenario Context "+scenarioContext.getScenario().hashCode());
         System.out.println("hashcode driver "+driver.hashCode());
-        contextMap.get(driver.hashCode()).scenario.attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "screenShot");
+        googlePage.addScreenShot();
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
     @Then("I should see at least {int} results")
@@ -80,6 +81,8 @@ public class GoogleSteps {
         Assert.assertTrue(this.googlePage.getCount() >= count);
         utils.singleClick(driver,By.xpath("//a[normalize-space()='Images']"));
         Thread.sleep(3000);
+        googlePage.addScreenShot();
+        System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
         driver.findElement(By.xpath("//a[normalize-space()='Videos']")).click();
     }
  }
