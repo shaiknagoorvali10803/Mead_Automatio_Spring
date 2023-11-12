@@ -5,6 +5,7 @@ import com.spring.springselenium.Configuraion.service.ScreenshotService;
 import com.spring.springselenium.PageClass.Google.GooglePage;
 import com.spring.springselenium.PageClass.Visa.VisaRegistrationPage;
 import com.spring.springselenium.SeleniumUtils.SeleniumUtils;
+import com.spring.springselenium.Utils.ScreenshotUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,7 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VisaSteps {
-    private static Map<Integer,ScenarioContext> contextMap = new HashMap<>();
     @Autowired
     protected WebDriver driver;
 
@@ -34,13 +34,9 @@ public class VisaSteps {
     @Autowired
     private TestUserDetails testUserDetails;
 
-    @LazyAutowired
-    private ScreenshotService screenshot;
-
-    @LazyAutowired
-    private SeleniumUtils utils;
-
-    @LazyAutowired
+    @Autowired
+    ScreenshotUtils screenshotUtils;
+   @LazyAutowired
     private GooglePage googlePage;
 
     @LazyAutowired
@@ -48,9 +44,6 @@ public class VisaSteps {
 
     @Autowired
     ScenarioContext scenarioContext;
-
-    @LazyAutowired
-    protected ScreenshotService screenshotService;
 
     @Autowired
     public VisaSteps (TestUserDetails testUserDetails)
@@ -61,13 +54,12 @@ public class VisaSteps {
     @PostConstruct
     private void init(){
         PageFactory.initElements(this.driver, this);
-        contextMap.put(driver.hashCode(),scenarioContext);
     }
     @Given("I am on VISA registration form")
     public void launchSite() {
         this.driver.navigate().to("https://vins-udemy.s3.amazonaws.com/sb/visa/udemy-visa.html");
         System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
-        visaRegistrationPage.addScreenShot();
+        screenshotUtils.insertScreenshot("screenshot");
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
          }
 
@@ -98,7 +90,7 @@ public class VisaSteps {
 
     @And("I submit the form")
     public void submit() {
-        visaRegistrationPage.addScreenShot();
+        screenshotUtils.insertScreenshot("screenshot");
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         this.registrationPage.submit();
         System.out.println("hashcode scenario Context "+scenarioContext.getScenario().hashCode());
@@ -108,6 +100,7 @@ public class VisaSteps {
     @Then("I should see get the confirmation number")
     public void verifyConfirmationNumber() throws InterruptedException {
         boolean isEmpty = StringUtils.isEmpty(this.registrationPage.getConfirmationNumber().trim());
+        screenshotUtils.insertScreenshot("screenshot");
         System.out.println("Current Thread Number "+ Thread.currentThread().getThreadGroup() +"thread number"+ Thread.currentThread().getId());
         Assert.assertFalse(isEmpty);
         Thread.sleep(2000);

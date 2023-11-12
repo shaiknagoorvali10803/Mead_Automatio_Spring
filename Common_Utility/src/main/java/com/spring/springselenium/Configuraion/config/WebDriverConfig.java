@@ -2,11 +2,10 @@ package com.spring.springselenium.Configuraion.config;
 
 import com.spring.springselenium.Configuraion.annotation.LazyConfiguration;
 import com.spring.springselenium.Configuraion.annotation.ThreadScopeBean;
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.apache.commons.lang3.BooleanUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -41,9 +40,8 @@ public class WebDriverConfig {
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "firefox")
     public WebDriver firefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
         FirefoxOptions options = new FirefoxOptions();
-        options.setHeadless(BooleanUtils.toBoolean(headless));
+        //options.setHeadless(BooleanUtils.toBoolean(headless));
         if (BooleanUtils.toBoolean(BUILD_TOOL_RUN)) {
             try {
                 return new RemoteWebDriver(new URL(SELENIUM_GRID_URL), options);
@@ -58,9 +56,8 @@ public class WebDriverConfig {
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "chrome")
     public WebDriver chromeDriver(){
-        WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(BooleanUtils.toBoolean(headless));
+        //chromeOptions.setHeadless(BooleanUtils.toBoolean(headless));
         chromeOptions.addArguments("--proxy-server='direct://'");
         chromeOptions.addArguments("--proxy-bypass-list=*");
         chromeOptions.addArguments("--ignore-certificate-errors");
@@ -91,7 +88,6 @@ public class WebDriverConfig {
     @ThreadScopeBean
     @ConditionalOnProperty(name = "browser", havingValue = "edge")
     public WebDriver edgeDriver() {
-        WebDriverManager.edgedriver().setup();
         EdgeOptions options = new EdgeOptions();
         options.setCapability("InPrivate", true);
         if (BooleanUtils.toBoolean(BUILD_TOOL_RUN)) {

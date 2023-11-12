@@ -24,7 +24,6 @@ import java.util.Objects;
 
 @Page
 public class VisaRegistrationPage extends Base {
-    private static Map<Integer, ScenarioContext> contextMap = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(VisaRegistrationPage.class);
 
     @FindBy(id ="first_4")
@@ -67,11 +66,6 @@ public class VisaRegistrationPage extends Base {
     private SeleniumUtils utils;
     @Autowired
     ScenarioContext scenarioContext;
-    @PostConstruct
-    private void init(){
-        contextMap.put(driver.hashCode(),scenarioContext);
-    }
-
    public void setNames(String firstName, String lastName){
         logger.info("Getting names : " + firstName);
         this.firstName.sendKeys(firstName);
@@ -106,27 +100,5 @@ public class VisaRegistrationPage extends Base {
         return this.requestNumber.getText();
     }
 
-    public void addScreenShot(){
-        if(!contextMap.get(driver.hashCode()).getScenario().isFailed() && contextMap.get(driver.hashCode()).getScenario() !=null ){
-            try{
-                contextMap.get(driver.hashCode()).getScenario().attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "screenShot");
-            }
-            catch (Exception e){
-                System.out.println("failed to add screenshot");
-            }
-        }
-        System.out.println("current scenario status is: " +contextMap.get(driver.hashCode()).getScenario().getStatus().toString());
-        System.out.println("current ExtentAdapter scenario status is: " + ExtentCucumberAdapter.getCurrentStep().getStatus().toString());
-    }
-    public void addLog(String text){
-        if(!contextMap.get(driver.hashCode()).getScenario().isFailed()){
-            contextMap.get(driver.hashCode()).getScenario().log(text);
-        }
-    }
-    public void addLog(List<Object> Values){
-        if(!contextMap.get(driver.hashCode()).getScenario().isFailed()){
-            contextMap.get(driver.hashCode()).getScenario().log(Values.toString());
-        }
-    }
 
 }

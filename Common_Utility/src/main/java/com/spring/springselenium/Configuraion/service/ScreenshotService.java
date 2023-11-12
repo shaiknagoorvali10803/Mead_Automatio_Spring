@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Lazy
 @Service
@@ -54,7 +56,6 @@ public class ScreenshotService {
     public byte[] getScreenshot(){
         return this.ctx.getBean(TakesScreenshot.class).getScreenshotAs(OutputType.BYTES);
     }
-
 
 
 }
